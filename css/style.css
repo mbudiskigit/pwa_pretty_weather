@@ -1,0 +1,38 @@
+
+@font-face {
+    font-family: Heartbeat_in_Christmas;
+    src: url(fonts/Heartbeat_in_Christmas.ttf);
+}
+
+@font-face {
+    font-family: Gravity-Regular;
+    src: url(fonts/Gravity-Regular.otf);
+}
+
+@font-face {
+    font-family: Gravity-Bold;
+    src: url(fonts/Gravity-Bold.otf);
+}
+
+body{
+    font-family: Gravity-Regular;
+}
+
+.bold{
+    font-family: Gravity-Bold;
+}
+
+.font-titulo{
+    font-family: Heartbeat_in_Christmas;
+    font-size: 56px;
+}
+
+.breadcrumb li{
+    font-size: 18px;
+}
+
+.pointer{
+    cursor: pointer;
+    font-size: 18px;
+}
+

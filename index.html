@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!--<base href="/pwa_iniciando/">-->
+    <base href="/pwa-pretty-weather/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PWA</title>
+    <link rel="stylesheet" href="css/colors.css" >
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="manifest" href="manifest.json" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="myNotes">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#607d8b">
+    
+    <meta name="theme-color" content="#607d8b">
+</head>
+
+<body ng-app="pretty-weather" ng-controller="IndexController as controller">
+  
+  <div class="container">
+
+    <h2 class="font-titulo">Pretty Weather</h2>
+
+    <hr/>
+
+    <ol class="breadcrumb">
+      <li><i class="fa fa-map-marker"></i> {{controller.resposta.results.city_name}}</li>
+      <li><i class="fa fa-calendar"></i> {{controller.resposta.results.date}}</li>
+      <li><i class="fa fa-clock-o"></i> {{controller.resposta.results.time}}</li>
+      <i class="fa fa-cog pull-right pointer" style="margin-top: 3px;" ng-click="controller.trocarCidade()"></i>
+    </ol>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <img src="{{controller.resposta.imagem}}" width="170" />
+      </div>
+      <div class="col-sm-3" style="line-height: 2.2em;">
+        <br/>
+        <span style="font-size: 60px;" class="bold">{{controller.resposta.results.temp}}ºC</span>
+        <br/>
+        <img src="img/termometro_maxima.png" width="30"/> {{controller.resposta.results.forecast[0].max}}ºC
+        <img src="/img/termometro_minima.png" width="30"/> {{controller.resposta.results.forecast[0].min}}ºC
+      </div>
+      <div class="col-sm-3" style="line-height: 1.8em;">
+          <br/>
+          <img src="img/umidade.png" width="30" /> {{controller.resposta.results.humidity}}%
+          <br/>
+          <img src="img/vel_vento.png" width="30" /> {{controller.resposta.results.wind_speedy}}
+          <br/>
+          <img src="img/uv.png" width="30" /> {{controller.resposta.iuv.uv}}
+          <br/>
+          <img src="{{controller.resposta.iuv.imagem}}" width="20" /> IUV {{controller.resposta.iuv.descricao}}
+      </div>
+      <div class="col-sm-3" style="line-height: 1.8em;">
+        <br/>
+        Nascer do Sol: {{controller.resposta.results.sunrise}}
+        <br/>
+        Pôr do Sol: {{controller.resposta.results.sunset}}
+      </div>
+    </div>
+
+    <hr/>
+
+    <h2>Próximos dias:</h2>
+
+    <div class="row">
+      <div class="col-sm-3" ng-repeat="previsao in controller.resposta.results.forecast">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              {{previsao.weekday}} {{previsao.date}}
+            </div>
+            <div class="panel-body text-center" style="font-size: 13px;">
+              <img src="{{previsao.imagem}}" class="img-responsive" />
+              <br/>
+              <img src="img/termometro_maxima.png" width="17"/> {{previsao.min}}ºC
+              <img src="img/termometro_minima.png" width="17"/> {{previsao.max}}ºC
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer style="background-color: #eee;">
+    <div style="padding: 6px;">&copy; 2017</div>
+  </footer>  
+ 
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/index-controller.js"></script>
+  <script src="js/scripts.js"></script>
+
+</body>
+
+</html>
